@@ -12,6 +12,7 @@ from django.contrib.auth import (
 )
 from accounts.api.serializers import SignupSerializer, LoginSerializer
 
+
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -86,17 +87,14 @@ class AccountViewSet(viewsets.ViewSet):
         return Response({
             'success': True,
             'user': UserSerializer(user).data,
-        })
+        }, status=201)
 
     @action(methods=['GET'], detail=False)
     def login_status(self, request):
         """
         查看用户当前的登录状态和具体信息
         """
-        data = {
-            'has_logged_in': request.user.is_authenticated,
-            'ip': request.META['REMOTE_ADDR']
-        }
+        data = {'has_logged_in': request.user.is_authenticated}
         if request.user.is_authenticated:
             data['user'] = UserSerializer(request.user).data
         return Response(data)

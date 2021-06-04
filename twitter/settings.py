@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9g4t4h*p9=dpf$m_9wd7qe+pq&cx%$ue$kex84yds(+g&cqu=u'
+SECRET_KEY = 'i_8$e&=cfr5bd1r(@^@gd@2y@+0@i0%ldpeke108o+pux&hsn4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'debug_toolbar',
-
+    # third party
     'rest_framework',
-    'tweets',
+
+    # project apps
     'accounts',
+    'tweets',
+    'friendships',
 ]
 
 REST_FRAMEWORK = {
@@ -51,7 +53,6 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -92,10 +93,9 @@ DATABASES = {
         'HOST': '0.0.0.0',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'yourpassword', # 这里是自己下载mysql时候输入两次的那个密码
+        'PASSWORD': 'yourpassword',    # 这里是自己下载mysql时候输入两次的那个密码
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -134,5 +134,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-INTERNAL_IPS = ['10.0.2.2']
